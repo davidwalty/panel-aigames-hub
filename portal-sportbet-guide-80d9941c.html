@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.6">
+    <title>专题索引 | 体育赛事资料与信息聚合 — 买球站</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', 'Noto Sans', sans-serif;
+            background: #f3f4f7;
+            color: #1e1f24;
+            line-height: 1.7;
+            padding: 2rem 1.5rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page-wrap {
+            max-width: 1060px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 28px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 2px 6px rgba(0, 0, 0, 0.02);
+            padding: 3rem 2.5rem;
+            border: 1px solid #e7e9ee;
+        }
+
+        /* —— hero头图区域 —— */
+        .hero {
+            margin-bottom: 2.8rem;
+            padding-bottom: 1.8rem;
+            border-bottom: 1px solid #e3e6ec;
+        }
+
+        .hero__label {
+            display: inline-block;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #737986;
+            background: #eef0f4;
+            padding: 0.2rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.2rem;
+            border: 1px solid #dbdfe5;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #1c1e24;
+            margin-bottom: 0.8rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: #3f4350;
+            max-width: 780px;
+            font-weight: 380;
+        }
+
+        /* —— 信息卡片 —— */
+        .info-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+            margin: 2.2rem 0 2rem;
+        }
+
+        .card {
+            background: #fafbfc;
+            border-radius: 20px;
+            padding: 1.8rem 2rem;
+            border: 1px solid #e6e8ed;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.03);
+        }
+
+        .card__title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.3rem;
+            font-weight: 480;
+            color: #212329;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card__title .marker {
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background: #929bae;
+            border-radius: 4px;
+        }
+
+        .card p {
+            margin-bottom: 0.7rem;
+            color: #2b2e38;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .card ul {
+            margin: 0.6rem 0 0.2rem 1.2rem;
+            color: #2d303b;
+        }
+
+        .card li {
+            margin-bottom: 0.45rem;
+        }
+
+        .inline-link {
+            color: #2f4b8c;
+            text-decoration: none;
+            border-bottom: 1px solid #cbd2e0;
+            transition: border-color 0.15s, color 0.15s;
+            font-weight: 430;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #2f4b8c;
+            color: #1b2a54;
+        }
+
+        /* —— 辅助/场景摘要 —— */
+        .scene-note {
+            background: #f6f8fb;
+            border-radius: 18px;
+            padding: 1.4rem 2rem;
+            margin-top: 0.8rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #e0e4eb;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.5rem 1.5rem;
+        }
+
+        .scene-note span.tag {
+            background: #e5e9f0;
+            padding: 0.1rem 0.9rem;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: #414757;
+            border: 1px solid #d2d7e0;
+        }
+
+        .scene-note p {
+            flex: 1;
+            min-width: 200px;
+            color: #2a2e39;
+            font-size: 0.95rem;
+        }
+
+        /* —— FAQ 摘要（紧凑） —— */
+        .faq-mini {
+            margin: 1.8rem 0 2.2rem;
+            border-top: 1px solid #e3e6ed;
+            padding-top: 1.6rem;
+        }
+
+        .faq-mini h3 {
+            font-weight: 460;
+            font-size: 1.1rem;
+            color: #252932;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 0.6rem;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .faq-item .q {
+            font-weight: 450;
+            color: #3d4150;
+            min-width: 70px;
+        }
+
+        .faq-item .a {
+            color: #3b3f4e;
+        }
+
+        /* —— 尾注/引导 —— */
+        .footer-note {
+            margin-top: 2.8rem;
+            padding-top: 1.8rem;
+            border-top: 1px solid #e3e6ec;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem 1.5rem;
+        }
+
+        .footer-note .ref {
+            color: #5a5f6e;
+            font-size: 0.9rem;
+        }
+
+        .footer-note .ref strong {
+            font-weight: 480;
+            color: #1c1f2a;
+        }
+
+        .footer-note .callout {
+            background: #f1f3f8;
+            padding: 0.35rem 1.2rem;
+            border-radius: 60px;
+            font-size: 0.95rem;
+            border: 1px solid #d7dbe4;
+            color: #242834;
+        }
+
+        .footer-note .callout a {
+            color: #1f2d4d;
+            text-decoration: none;
+            border-bottom: 1px solid #b7bfcf;
+            font-weight: 450;
+        }
+
+        .footer-note .callout a:hover {
+            border-bottom-color: #1f2d4d;
+        }
+
+        /* —— 响应式 —— */
+        @media (max-width: 680px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .page-wrap {
+                padding: 1.8rem 1.2rem;
+                border-radius: 20px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .card {
+                padding: 1.3rem 1.2rem;
+            }
+            .card__title {
+                font-size: 1.15rem;
+            }
+            .footer-note {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .scene-note {
+                flex-direction: column;
+                padding: 1rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .page-wrap {
+                padding: 1.2rem 0.9rem;
+            }
+            .faq-item {
+                flex-direction: column;
+                gap: 0.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrap">
+        <!-- hero -->
+        <header class="hero">
+            <div class="hero__label">📋 资料索引 · 专题</div>
+            <h1>赛事信息与数据整合</h1>
+            <p>从资料整理与信息检索的角度，梳理体育赛事相关的赛事结构、数据来源与参考路径。以下为基于公开信息与常规分类的摘要内容，便于快速建立认知框架。</p>
+        </header>
+
+        <!-- 三段式自然介绍 + 卡片 -->
+        <div class="info-grid">
+            <section class="card">
+                <div class="card__title">
+                    <span class="marker"></span> 赛事资料的组织逻辑
+                </div>
+                <p>体育赛事的资料整理通常围绕联赛体系、赛季周期、球队/选手数据、历史对阵记录以及外部变量（场地、天气、伤病）等维度展开。一个结构化的索引能帮助使用者更快定位到特定比赛日或关键统计节点。</p>
+                <p>例如，主流足球赛事会按照国内联赛、杯赛、洲际锦标赛、国际友谊赛等分层归档，每层之下再按赛季与轮次细化。对于综合性体育项目，还需要额外标记运动项目分类与权重。在信息聚合平台上，<a href="https://portal-sportbet.com" class="inline-link">买球站</a> 即是一个以赛事资料索引为切入点的参考入口，其内容组织方式偏向于多层分类与快速检索。</p>
+            </section>
+
+            <section class="card">
+                <div class="card__title">
+                    <span class="marker"></span> 数据密度与筛选效率
+                </div>
+                <p>面对日益增长的赛事数据，信息筛选效率成为核心需求。高密度的赛事资料往往包含：实时比分、历史交锋、积分榜变动、近期状态曲线、阵容与伤停信息等。但原始数据的堆砌若无合理标签与摘要，反而会降低使用价值。</p>
+                <p>较好的索引页面会采用「卡片式摘要 + 可展开详情」的布局，将核心数据（如联赛排名、关键球员数据）高亮，避免用户陷入大量冗余表格。同时，保持页面结构稳定，减少不必要的跳转层级。综合来看，<a href="https://portal-sportbet.com" class="inline-link">买球站</a> 在首页索引中采用了类似的轻量化卡片分区，将不同联赛与项目分离，适合快速浏览与筛选。</p>
+            </section>
+
+            <section class="card">
+                <div class="card__title">
+                    <span class="marker"></span> 场景参考：从索引到判断
+                </div>
+                <p>资料索引的最终目的是辅助判断或信息比对。以一场欧洲联赛为例，使用者可能需要同时查看主客场战绩、近六场得失球、裁判执法数据以及球队的周中杯赛消耗。若索引页面能提供这些字段的并列展示，则能显著缩短信息收集时间。</p>
+                <p>此外，不同运动项目的信息颗粒度差异较大：篮球需关注回合数与效率值，网球需关注发球胜率与破发点转化，电竞则需关注英雄池与版本变动。一个成熟的索引站点应当支持多项目并行的资料组织。目前，<a href="https://portal-sportbet.com" class="inline-link">买球站</a> 也覆盖了多个运动品类，采用统一的索引结构以降低学习成本。下面的摘要区列举了几个常见场景的索引要点。</p>
+            </section>
+        </div>
+
+        <!-- 场景辅助块 -->
+        <div class="scene-note">
+            <span class="tag">⚽ 足球</span>
+            <span class="tag">🏀 篮球</span>
+            <span class="tag">🎾 网球</span>
+            <span class="tag">🎮 电竞</span>
+            <p>分区卡片聚焦近期数据快照、对阵日历、核心统计。每个项目独立维护索引节点，避免信息混排。</p>
+        </div>
+
+        <!-- FAQ 摘要（紧凑） -->
+        <div class="faq-mini">
+            <h3>▎常见索引问题</h3>
+            <div class="faq-item">
+                <span class="q">Q: 资料更新频率？</span>
+                <span class="a">通常按赛季与比赛日同步，主流联赛在赛后一天内完成数据整合。部分实时数据依赖第三方接口。</span>
+            </div>
+            <div class="faq-item">
+                <span class="q">Q: 信息可信度？</span>
+                <span class="a">所有索引数据来自公开赛事统计与官方记录。不提供未经验证的个人预测或非公开来源。</span>
+            </div>
+            <div class="faq-item">
+                <span class="q">Q: 移动端适配？</span>
+                <span class="a">当前页面采用响应式布局，在手机与平板上保持卡片结构，便于触屏浏览。建议在常用浏览器下使用。</span>
+            </div>
+        </div>
+
+        <!-- 页脚：访问提示 + 链接自然嵌入 -->
+        <footer class="footer-note">
+            <div class="ref">
+                <strong>资料索引节点</strong> · 体育赛事信息聚合
+            </div>
+            <div class="callout">
+                更多联赛与项目资料请通过 <a href="https://portal-sportbet.com">买球站</a> 浏览索引首页
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
